@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeView.Scripts.ViewModels
+namespace FreeView.ViewModels
 {
     public class DataContextPropertyChangedEventArgs : EventArgs
     {

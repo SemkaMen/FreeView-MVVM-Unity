@@ -1,7 +1,7 @@
-using Core.MVVM.Bindings.Interfaces;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Bindings.Interfaces;
+using FreeView.ViewModels.Interfaces;
 
-namespace Core.MVVM.Views.interfaces
+namespace FreeView.Views.Interfaces
 {
     public interface IBaseView : IBindable
     {

@@ -1,7 +1,7 @@
 using System;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.ViewModels.Interfaces;
 
-namespace Core.MVVM.ViewModelLocator.Interfaces
+namespace FreeView.ViewModelLocator.Interfaces
 {
     public interface IViewModelProvider
     {

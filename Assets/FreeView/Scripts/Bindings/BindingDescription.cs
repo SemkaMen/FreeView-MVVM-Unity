@@ -1,10 +1,10 @@
 using System;
 using System.Linq.Expressions;
-using Core.MVVM.Bindings.Interfaces;
-using FreeView.Scripts.ViewModels;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Bindings.Interfaces;
+using FreeView.ViewModels;
+using FreeView.ViewModels.Interfaces;
 
-namespace Core.MVVM.Bindings
+namespace FreeView.Bindings
 {
     public class BindingDescription<TTarget, TSource> : IBindingDescription where TTarget : class
     {
@@ -58,8 +58,7 @@ namespace Core.MVVM.Bindings
             var newValue = value ?? _source.GetPropertyValue(_sourcePropertyName);
             _target.SetPropertyValue(_targetPropertyName, newValue);
         }
-
-
+        
         public void Dispose()
         {
             Dispose(disposing: true);

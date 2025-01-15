@@ -1,4 +1,4 @@
-namespace FreeView.Scripts.ViewModels.Interfaces
+namespace FreeView.ViewModels.Interfaces
 {
     public interface IBaseViewModel
     {

@@ -1,9 +1,8 @@
 using System;
-using Core.MVVM.ViewModelLocator.Interfaces;
-using FreeView.Scripts.ViewModelLocator.Interfaces;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.ViewModelLocator.Interfaces;
+using FreeView.ViewModels.Interfaces;
 
-namespace Core.MVVM.ViewModelLocator
+namespace FreeView.ViewModelLocator
 {
     public class ViewModelLocator : IViewModelLocator
     {

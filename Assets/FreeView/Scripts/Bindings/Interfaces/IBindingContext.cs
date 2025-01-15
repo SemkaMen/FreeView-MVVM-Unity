@@ -1,4 +1,4 @@
-namespace Core.MVVM.Bindings.Interfaces
+namespace FreeView.Bindings.Interfaces
 {
     public interface IBindingContext
     {

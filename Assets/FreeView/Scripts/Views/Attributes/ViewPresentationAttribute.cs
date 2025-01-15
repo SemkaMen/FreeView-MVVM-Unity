@@ -1,10 +1,10 @@
 using System;
 
-namespace Core.MVVM.Views.Attributes
+namespace FreeView.Views.Attributes
 {
     public class ViewPresentationAttribute : Attribute
     {
-        public string ParentCanvasContainer { get; set; }
+        public string CanvasContainerName { get; set; }
         public string PrefabPath { get; set; }
     }
 }

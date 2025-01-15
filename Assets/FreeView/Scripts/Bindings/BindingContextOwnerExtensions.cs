@@ -1,8 +1,8 @@
 using System;
 using System.Linq.Expressions;
-using Core.MVVM.Bindings.Interfaces;
+using FreeView.Bindings.Interfaces;
 
-namespace Core.MVVM.Bindings
+namespace FreeView.Bindings
 {
     public static class BindingContextOwnerExtensions
     {

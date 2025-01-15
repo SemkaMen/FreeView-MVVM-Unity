@@ -1,41 +1,25 @@
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using Core.MVVM.Views;
-using Core.MVVM.Views.Attributes;
-using Core.MVVM.Views.interfaces;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Views.Interfaces;
+using FreeView.Views.Attributes;
 using UnityEngine;
 
-namespace FreeView.Scripts.Views
+namespace FreeView.Views
 {
     public class ViewLoader : IViewLoader
     {
-        private readonly Dictionary<Type, Type> _bindingMap = new();
         private const string Path = "Prefabs/Views/";
-        
-        private string GetPrefabPath(string prefabName)
-        {
-            return $"{Path}{prefabName}";
-        }
+        private readonly IViewsContainer _viewsContainer;
 
-        public Type GetViewType(Type? viewModelType)
+        public ViewLoader(IViewsContainer viewsContainer)
         {
-            if (viewModelType != null && _bindingMap.TryGetValue(viewModelType, out var binding))
-                return binding;
-            
-            throw new KeyNotFoundException("Could not find view for " + viewModelType);
-        }
-
-        public void Initialize()
-        {
-            CreateMapping();
+            _viewsContainer = viewsContainer;
         }
 
         public BaseView LoadView(Type viewModelType)
         {
             BaseView viewInstance = null;
-            var viewType = GetViewType(viewModelType);
+            var viewType = _viewsContainer.GetViewType(viewModelType);
             var prefabName = string.Empty;
                 
             if (viewType.GetCustomAttribute<ViewPresentationAttribute>() is { } viewPresentationAttribute)
@@ -44,26 +28,13 @@ namespace FreeView.Scripts.Views
             if (string.IsNullOrEmpty(prefabName))
                 prefabName = viewType.Name;
                 
-            if (!string.IsNullOrEmpty(prefabName)) 
-                viewInstance = Resources.Load<BaseView>(GetPrefabPath(prefabName));
+            if (!string.IsNullOrEmpty(prefabName))
+            {
+                var prefabPath = $"{Path}{prefabName}";
+                viewInstance = Resources.Load<BaseView>(prefabPath);
+            }
 
             return viewInstance;
-        }
-
-        private void CreateMapping()
-        {
-        }
-        
-        private void Add<TViewModel, TView>()
-            where TViewModel : IBaseViewModel
-            where TView : IBaseView
-        {
-            Add(typeof(TViewModel), typeof(TView));
-        }
-
-        private void Add(Type viewModelType, Type viewType)
-        {
-            _bindingMap[viewModelType] = viewType;
         }
     }
 }

@@ -1,11 +1,14 @@
 using System.Collections.Generic;
-using Core.MVVM.Views.interfaces;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.ViewModels.Interfaces;
+using FreeView.Views.Interfaces;
 
-namespace Core.MVVM.Services.Interfaces
+namespace FreeView.Services.Interfaces
 {
     public interface ICanvasViewService
     {
+        void InitView<TViewModel>(bool isVisible = true) where TViewModel : IBaseViewModel;
+        void InitView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs, bool isVisible = true) 
+            where TViewModel : IBaseViewModel<TNavigationArgs>;
         void Hide<TViewModel>(TViewModel viewModel) where TViewModel : IBaseViewModel;
         void Show<TViewModel>(TViewModel viewModel) where TViewModel : IBaseViewModel;
         List<IBaseView> ChildViews { get; }

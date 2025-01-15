@@ -1,6 +1,6 @@
-using Core.MVVM.Bindings.Interfaces;
+using FreeView.Bindings.Interfaces;
 
-namespace Core.MVVM.Bindings
+namespace FreeView.Bindings
 {
     public class BindingContext : IBindingContext
     {

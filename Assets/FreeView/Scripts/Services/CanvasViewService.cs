@@ -1,13 +1,31 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using Core.MVVM.Services.Interfaces;
-using Core.MVVM.Views.interfaces;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Services.Interfaces;
+using FreeView.ViewModels.Interfaces;
+using FreeView.ViewPresenter.Interfaces;
+using FreeView.Views.Interfaces;
 
-namespace Core.MVVM.Services
+namespace FreeView.Services
 {
     public class CanvasViewService : ICanvasViewService
     {
+        private readonly IViewPresenter _viewPresenter;
+
+        public CanvasViewService(IViewPresenter viewPresenter)
+        {
+            _viewPresenter = viewPresenter;
+        }
+
+        public void InitView<TViewModel>(bool isVisible = true) where TViewModel : IBaseViewModel
+        {
+            AddView(_viewPresenter.PresentView<TViewModel>(), isVisible);
+        }
+
+        public void InitView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs, bool isVisible = true) where TViewModel : IBaseViewModel<TNavigationArgs>  
+        {
+            AddView(_viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs), isVisible);
+        }
+        
         public List<IBaseView> ChildViews { get; } = new();
         
         public void AddView(IBaseView view, bool isVisible = true)

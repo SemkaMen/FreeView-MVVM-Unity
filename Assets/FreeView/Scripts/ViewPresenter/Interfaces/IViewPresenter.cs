@@ -1,7 +1,7 @@
-using Core.MVVM.Views;
-using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.ViewModels.Interfaces;
+using FreeView.Views;
 
-namespace FreeView.Scripts.ViewPresenter.Interfaces
+namespace FreeView.ViewPresenter.Interfaces
 {
     public interface IViewPresenter
     {

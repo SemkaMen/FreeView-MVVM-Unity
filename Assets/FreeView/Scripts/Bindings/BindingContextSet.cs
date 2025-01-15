@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Core.MVVM.Bindings.Interfaces;
+using FreeView.Bindings.Interfaces;
 
-namespace Core.MVVM.Bindings
+namespace FreeView.Bindings
 {
-    public class BindingContextSet<TTarget, TSource> : IBindingContextSet where TTarget : class, IBindingContextOwner
+    public class BindingContextSet<TTarget, TSource> : IDisposable where TTarget : class, IBindingContextOwner
     {
         private readonly TTarget _target;
         private readonly TSource _dataContext;
