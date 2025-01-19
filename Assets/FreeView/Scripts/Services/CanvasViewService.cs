@@ -11,6 +11,8 @@ namespace FreeView.Services
     {
         private readonly IViewPresenter _viewPresenter;
 
+        public List<IBaseView> ChildViews { get; } = new();
+
         public CanvasViewService(IViewPresenter viewPresenter)
         {
             _viewPresenter = viewPresenter;
@@ -25,8 +27,6 @@ namespace FreeView.Services
         {
             AddView(_viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs), isVisible);
         }
-        
-        public List<IBaseView> ChildViews { get; } = new();
         
         public void AddView(IBaseView view, bool isVisible = true)
         {
