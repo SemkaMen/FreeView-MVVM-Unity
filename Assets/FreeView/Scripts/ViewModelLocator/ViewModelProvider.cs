@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FreeView.ViewModelLocator.Interfaces;
 using FreeView.ViewModels.Interfaces;
 
@@ -6,26 +7,26 @@ namespace FreeView.ViewModelLocator
 {
     public class ViewModelProvider : IViewModelProvider
     {
-        public IBaseViewModel ResolveViewModel<TViewModel>() where TViewModel : IBaseViewModel
-        {
-            throw new NotImplementedException();
-        }
+        private Dictionary<Type, object> instances = new Dictionary<Type, object>();
+        public IBaseViewModel ResolveViewModel<TViewModel>() where TViewModel : IBaseViewModel => ResolveInstance<TViewModel>();
 
-        public IBaseViewModel ResolveViewModel(Type viewModelType)
-        {
-            throw new NotImplementedException();
-        }
+        public IBaseViewModel ResolveViewModel(Type viewModelType) => ResolveInstance<IBaseViewModel>(viewModelType);
 
-        public IBaseViewModel<TNavigationArgs> ResolveViewModel<TViewModel, TNavigationArgs>(TNavigationArgs args)
-            where TViewModel : IBaseViewModel<TNavigationArgs>
+        private TViewModel ResolveInstance<TViewModel>(Type viewModelType = null) where TViewModel : IBaseViewModel
         {
-            throw new NotImplementedException();
-        }
+            lock (this.instances)
+            {
+                var type = viewModelType ?? typeof(TViewModel) ;
+                if (this.instances.TryGetValue(type, out var instance))
+                {
+                    return (TViewModel)instance;
+                }
 
-        public IBaseViewModel<TNavigationArgs> ResolveViewModel<TNavigationArgs>(Type viewModelType,
-            TNavigationArgs args)
-        {
-            throw new NotImplementedException();
+                var newInstance = (TViewModel)Activator.CreateInstance(type);
+                this.instances.Add(type, newInstance);
+
+                return newInstance;
+            }
         }
     }
 }
