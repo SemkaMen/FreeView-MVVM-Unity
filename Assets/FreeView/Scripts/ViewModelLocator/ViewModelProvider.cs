@@ -7,23 +7,22 @@ namespace FreeView.ViewModelLocator
 {
     public class ViewModelProvider : IViewModelProvider
     {
-        private Dictionary<Type, object> instances = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, object> _instances = new();
+        
         public IBaseViewModel ResolveViewModel<TViewModel>() where TViewModel : IBaseViewModel => ResolveInstance<TViewModel>();
 
         public IBaseViewModel ResolveViewModel(Type viewModelType) => ResolveInstance<IBaseViewModel>(viewModelType);
 
         private TViewModel ResolveInstance<TViewModel>(Type viewModelType = null) where TViewModel : IBaseViewModel
         {
-            lock (this.instances)
+            lock (_instances)
             {
-                var type = viewModelType ?? typeof(TViewModel) ;
-                if (this.instances.TryGetValue(type, out var instance))
-                {
+                var type = viewModelType ?? typeof(TViewModel);
+                if (_instances.TryGetValue(type, out var instance))
                     return (TViewModel)instance;
-                }
 
                 var newInstance = (TViewModel)Activator.CreateInstance(type);
-                this.instances.Add(type, newInstance);
+                _instances.Add(type, newInstance);
 
                 return newInstance;
             }

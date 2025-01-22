@@ -16,16 +16,12 @@ namespace FreeView.Views
         }
     }
     
+    [RequireComponent(typeof(RectTransform))]
     public abstract class BaseView : MonoBehaviour, IBaseView
     {
         private IBindingContext _bindingContext;
         private string _mappingStartPrefix;
         private Dictionary<string, GameObject> _map;
-
-        [SerializeField]
-        private string _label;
-
-        public string Label => _label;
         
         public IBindingContext BindingContext
         {
@@ -49,20 +45,10 @@ namespace FreeView.Views
         {
             gameObject.SetActive(isVisible);
         }
-        
-        protected GameObject GetElement(string elementName)
-        {
-            return _map[elementName];
-        }
 
         protected T GetElementComponent<T>(string elementName)
         {
             return _map[elementName].GetComponent<T>();
-        }
-
-        protected RectTransform GetRectTransform(string name)
-        {
-            return _map[name].GetComponent<RectTransform>();
         }
         
         protected virtual void OnViewAwake()
