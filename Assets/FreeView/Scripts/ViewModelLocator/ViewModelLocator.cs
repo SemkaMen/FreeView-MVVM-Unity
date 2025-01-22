@@ -49,12 +49,12 @@ namespace FreeView.ViewModelLocator
         }
         
         public IBaseViewModel<TNavigationArgs> Load<TViewModel, TNavigationArgs>(TNavigationArgs args) 
-            where TViewModel : IBaseViewModel
+            where TViewModel : IBaseViewModel<TNavigationArgs>
         {
-            IBaseViewModel baseViewModel;
+            IBaseViewModel<TNavigationArgs> baseViewModel;
             try
             {
-                baseViewModel = _viewModelProvider.ResolveViewModel<TViewModel>();
+                baseViewModel = (IBaseViewModel<TNavigationArgs>)_viewModelProvider.ResolveViewModel<TViewModel>();
             }
             catch (Exception e)
             {
