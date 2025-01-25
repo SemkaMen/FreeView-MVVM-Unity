@@ -665,6 +665,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2915596235009402554, guid: 5e4ef1faa0f1e4b6483cba660162f00f, type: 3}
+      propertyPath: m_Name
+      value: _counterText
+      objectReference: {fileID: 0}
     - target: {fileID: 2915596235051705920, guid: 5e4ef1faa0f1e4b6483cba660162f00f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -752,6 +756,10 @@ PrefabInstance:
     - target: {fileID: 2915596235051705923, guid: 5e4ef1faa0f1e4b6483cba660162f00f, type: 3}
       propertyPath: m_Name
       value: PlaygroundView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915596236300159364, guid: 5e4ef1faa0f1e4b6483cba660162f00f, type: 3}
+      propertyPath: m_Name
+      value: _toggleDoorButton
       objectReference: {fileID: 0}
     - target: {fileID: 2915596236300159365, guid: 5e4ef1faa0f1e4b6483cba660162f00f, type: 3}
       propertyPath: m_AnchoredPosition.y
