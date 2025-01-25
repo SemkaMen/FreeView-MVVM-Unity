@@ -1,26 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Sample.Scripts.Views
+namespace Sample.Scripts.Controllers
 {
-    public class CardController : MonoBehaviour
+    public class DoorController : MonoBehaviour
     {
         [SerializeField]
         private float duration;
-
-        [SerializeField]
-        private Transform model;
-
+        
         [SerializeField]
         private Vector3 openPosition;
 
+        private Transform _model;
         private Vector3 _initialPosition;
-        private bool _isOpen = false;
-        private bool _isProcessing = false;
+        private bool _isOpen;
+        private bool _isProcessing;
 
         private void Start()
         {
-            _initialPosition = model.position;
+            _initialPosition = _model.position;
         }
 
         public void Toggle()
@@ -32,14 +30,14 @@ namespace Sample.Scripts.Views
         private IEnumerator ToggleDoorCoroutine()
         {
             var elapsedTime = 0f;
-            var startPosition = model.position;
+            var startPosition = _model.position;
             var targetPosition = _isOpen ? _initialPosition : openPosition;
 
             _isProcessing = true;
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.deltaTime;
-                model.position = Vector3.Lerp(startPosition, targetPosition, EaseInQuart(elapsedTime / duration));
+                _model.position = Vector3.Lerp(startPosition, targetPosition, EaseInQuart(elapsedTime / duration));
                 yield return null;
             }
             _isOpen = !_isOpen;
