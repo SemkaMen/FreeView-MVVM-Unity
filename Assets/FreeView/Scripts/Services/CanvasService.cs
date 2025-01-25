@@ -22,22 +22,28 @@ namespace FreeView.Services
         
         public void Clear() => ChildViews.Clear();
 
-        public void Hide<TViewModel>(TViewModel viewModel) where TViewModel : IBaseViewModel
+        public void Hide<TViewModel>() where TViewModel : IBaseViewModel
         {
             SetVisibility<TViewModel>(false);
         }
 
-        public void Show<TViewModel>(TViewModel viewModel) where TViewModel : IBaseViewModel
+        public void Hide(IBaseViewModel viewModel)
         {
+        }
+        
+        public void Show<TViewModel>() where TViewModel : IBaseViewModel
+        {
+            InitView<TViewModel>();
             SetVisibility<TViewModel>(true);
         }
 
-        public void Show<TViewModel, TNavigationArgs>(TViewModel viewModel, TNavigationArgs navigationArgs)
+        public void Show<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
             where TViewModel : IBaseViewModel<TNavigationArgs>
         {
+            InitView<TViewModel, TNavigationArgs>(navigationArgs);
             SetVisibility<TViewModel, TNavigationArgs>(true, navigationArgs);
         }
-
+        
         private void SetVisibility<TViewModel>(bool isVisible) where TViewModel : IBaseViewModel
         {
             var view = FindViewByViewModel<TViewModel>();
@@ -68,14 +74,32 @@ namespace FreeView.Services
 
         private void InitView<TViewModel>() where TViewModel : IBaseViewModel
         {
-            AddView(_viewPresenter.PresentView<TViewModel>());
+            var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
+            if (view == null)
+            {
+                // var t = UnityEngine.Object.FindObjectOfType(typeof(IBaseView));
+                // view = t as IBaseView;
+                // if (view == null)
+                {
+                    view = _viewPresenter.PresentView<TViewModel>();
+                }
+                AddView(view);
+            }
         }
 
         private void InitView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs, bool isVisible = true)
             where TViewModel : IBaseViewModel<TNavigationArgs>
         {
-            var view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
-            AddView(view);
+            var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
+            if (view == null)
+            {
+                view = UnityEngine.Object.FindObjectOfType(typeof(IBaseView)) as IBaseView;
+                if (view == null)
+                {
+                    view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
+                }
+                AddView(view);
+            }
             if (isVisible) view.SetVisible(true);
         }
 
@@ -84,7 +108,7 @@ namespace FreeView.Services
             if (view == null) throw new ArgumentNullException(nameof(view));
             if (!ChildViews.Contains(view)) ChildViews.Add(view);
         }
-
+        
         private void RemoveView<TViewModel>()
         {
             var view = FindViewByViewModel<TViewModel>();

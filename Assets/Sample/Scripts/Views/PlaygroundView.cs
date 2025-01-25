@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Sample.Scripts.Views
 {
     [ViewPresentation(CanvasContainerName = "MainCanvas")]
-    public class PlaygroundView : BaseView<PlaygroundBaseViewModel>
+    public class PlaygroundView : BaseView<PlaygroundViewModel>
     {
         private Button _toggleDoorButton;
         private TextMeshProUGUI _counterText;
@@ -37,7 +37,7 @@ namespace Sample.Scripts.Views
         {
             base.OnViewStart();
         
-            var set = this.CreateBindingSet<PlaygroundView, PlaygroundBaseViewModel>();
+            var set = this.CreateBindingSet<PlaygroundView, PlaygroundViewModel>();
             set.Bind(this).For(v => v.CounterValue).To(vm => vm.CounterValue);
             set.Apply();
         }

@@ -3,7 +3,7 @@ using Sample.Scripts.Controllers;
 
 namespace Sample.Scripts.ViewModels
 {
-    public class PlaygroundBaseViewModel : BaseViewModel
+    public class PlaygroundViewModel : BaseViewModel
     {
         private DoorController _doorController;
         private int _counterValue;
@@ -14,7 +14,7 @@ namespace Sample.Scripts.ViewModels
             set => SetProperty(ref _counterValue, value);
         }
 
-        public PlaygroundBaseViewModel()
+        public PlaygroundViewModel()
         {
         }
 
