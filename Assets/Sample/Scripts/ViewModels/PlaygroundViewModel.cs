@@ -20,22 +20,7 @@ namespace Sample.Scripts.ViewModels
             _doorController = args.DoorController;
             IsDoorOpened = _doorController.IsOpened;
         }
-
-        public override void OnViewAwake()
-        {
-            base.OnViewAwake();
-        }
-
-        public override void OnViewDestroy()
-        {
-            base.OnViewDestroy();
-        }
-
-        public override void OnViewStart()
-        {
-            base.OnViewStart();
-        }
-
+        
         public override void OnViewEnable()
         {
             base.OnViewEnable();

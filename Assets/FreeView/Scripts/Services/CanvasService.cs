@@ -77,12 +77,7 @@ namespace FreeView.Services
             var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
             if (view == null)
             {
-                // var t = UnityEngine.Object.FindObjectOfType(typeof(IBaseView));
-                // view = t as IBaseView;
-                // if (view == null)
-                {
-                    view = _viewPresenter.PresentView<TViewModel>();
-                }
+                view = _viewPresenter.PresentView<TViewModel>();
                 AddView(view);
             }
         }
@@ -93,11 +88,7 @@ namespace FreeView.Services
             var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
             if (view == null)
             {
-                // view = UnityEngine.Object.FindObjectOfType(typeof(IBaseView)) as IBaseView;
-                // if (view == null)
-                {
-                    view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
-                }
+                view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
                 AddView(view);
             }
             if (isVisible) view.SetVisible(true);

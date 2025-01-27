@@ -13,7 +13,7 @@ namespace Sample.Scripts.Controllers
         private Vector3 openPosition;
 
         private Vector3 _initialPosition;
-        private bool _isOpened = true;
+        private bool _isOpened;
         private bool _isProcessing;
 
         public event Action<object, bool> DoorStateChanged;
