@@ -7,6 +7,8 @@ namespace Sample.Scripts.ViewModels
     {
         private DoorController _doorController;
         private bool _isDoorOpened;
+        private int _targetDoorOpens;
+        private int _doorOpenCounter;
 
         public bool IsDoorOpened
         {
@@ -14,10 +16,23 @@ namespace Sample.Scripts.ViewModels
             set => SetProperty(ref _isDoorOpened, value);
         }
         
+        public int TargetDoorOpens
+        {
+            get => _targetDoorOpens;
+            set => SetProperty(ref _targetDoorOpens, value);
+        }
+        
+        public int DoorOpenCounter
+        {
+            get => _doorOpenCounter;
+            set => SetProperty(ref _doorOpenCounter, value);
+        }
+        
         public override void Prepare(PlaygroundNavigationArgs args)
         {
             base.Prepare(args);
             _doorController = args.DoorController;
+            TargetDoorOpens = 10;
             IsDoorOpened = _doorController.IsOpened;
         }
         
@@ -41,6 +56,16 @@ namespace Sample.Scripts.ViewModels
         private void OnDoorControllerStateChanged(object sender, bool isOpened)
         {
             IsDoorOpened = isOpened;
+
+            if (IsDoorOpened)
+                DoorOpenCounter++;
+
+            if (DoorOpenCounter >= TargetDoorOpens)
+                ShowWinScreen();
+        }
+
+        private void ShowWinScreen()
+        {
         }
     }
 }
