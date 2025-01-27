@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.3
-  openPosition: {x: 3, y: 0, z: 0}
+  openPosition: {x: 3, y: 2, z: 3.5}
 --- !u!65 &369756824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -951,3 +951,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc321601dc8d47d7a34854f600cd7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorController: {fileID: 369756823}

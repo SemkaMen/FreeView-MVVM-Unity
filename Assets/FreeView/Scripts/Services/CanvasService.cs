@@ -93,8 +93,8 @@ namespace FreeView.Services
             var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
             if (view == null)
             {
-                view = UnityEngine.Object.FindObjectOfType(typeof(IBaseView)) as IBaseView;
-                if (view == null)
+                // view = UnityEngine.Object.FindObjectOfType(typeof(IBaseView)) as IBaseView;
+                // if (view == null)
                 {
                     view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
                 }

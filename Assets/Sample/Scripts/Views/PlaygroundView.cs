@@ -11,17 +11,17 @@ namespace Sample.Scripts.Views
     public class PlaygroundView : BaseView<PlaygroundViewModel>
     {
         private Button _toggleDoorButton;
-        private TextMeshProUGUI _counterText;
+        private TextMeshProUGUI _doorStateText;
         
-        private int _counterValue;
+        private bool _isDoorOpened;
 
-        public int CounterValue
+        public bool IsDoorOpened
         {
-            get => _counterValue;
+            get => _isDoorOpened;
             set
             {
-                _counterValue = value;
-                _counterText.text = $"Counter: {value}";
+                _isDoorOpened = value;
+                _doorStateText.text = $"Door is " + (value ? "opened" : "closed");
             }
         }
 
@@ -30,7 +30,7 @@ namespace Sample.Scripts.Views
             base.OnViewAwake();
 
             _toggleDoorButton = GetElementComponent<Button>("_toggleDoorButton");
-            _counterText = GetElementComponent<TextMeshProUGUI>("_counterText");
+            _doorStateText = GetElementComponent<TextMeshProUGUI>("_doorStateText");
         }
 
         protected override void OnViewStart()
@@ -38,7 +38,7 @@ namespace Sample.Scripts.Views
             base.OnViewStart();
         
             var set = this.CreateBindingSet<PlaygroundView, PlaygroundViewModel>();
-            set.Bind(this).For(v => v.CounterValue).To(vm => vm.CounterValue);
+            set.Bind(this).For(v => v.IsDoorOpened).To(vm => vm.IsDoorOpened);
             set.Apply();
         }
 

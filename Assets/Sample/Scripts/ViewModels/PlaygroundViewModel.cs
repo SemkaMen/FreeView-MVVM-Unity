@@ -3,24 +3,59 @@ using Sample.Scripts.Controllers;
 
 namespace Sample.Scripts.ViewModels
 {
-    public class PlaygroundViewModel : BaseViewModel
+    public class PlaygroundViewModel : BaseViewModel<PlaygroundNavigationArgs>
     {
         private DoorController _doorController;
-        private int _counterValue;
+        private bool _isDoorOpened;
 
-        public int CounterValue
+        public bool IsDoorOpened
         {
-            get => _counterValue;
-            set => SetProperty(ref _counterValue, value);
+            get => _isDoorOpened;
+            set => SetProperty(ref _isDoorOpened, value);
+        }
+        
+        public override void Prepare(PlaygroundNavigationArgs args)
+        {
+            base.Prepare(args);
+            _doorController = args.DoorController;
+            IsDoorOpened = _doorController.IsOpened;
         }
 
-        public PlaygroundViewModel()
+        public override void OnViewAwake()
         {
+            base.OnViewAwake();
         }
 
+        public override void OnViewDestroy()
+        {
+            base.OnViewDestroy();
+        }
+
+        public override void OnViewStart()
+        {
+            base.OnViewStart();
+        }
+
+        public override void OnViewEnable()
+        {
+            base.OnViewEnable();
+            _doorController.DoorStateChanged += OnDoorControllerStateChanged;
+        }
+        
+        public override void OnViewDisable()
+        {
+            base.OnViewDisable();
+            _doorController.DoorStateChanged -= OnDoorControllerStateChanged;
+        }
+        
         public void ToggleDoor()
         {
             _doorController.Toggle();
+        }
+        
+        private void OnDoorControllerStateChanged(object sender, bool isOpened)
+        {
+            IsDoorOpened = isOpened;
         }
     }
 }

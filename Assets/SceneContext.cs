@@ -10,8 +10,8 @@ using UnityEngine;
 
 public class SceneContext : MonoBehaviour
 {
-    [SerializeField] private DoorController _doorController;
-    
+    [SerializeField] private DoorController doorController;
+
     private Setup _setup;
 
     private void Awake()
@@ -19,18 +19,24 @@ public class SceneContext : MonoBehaviour
         _setup = new Setup();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        _setup.Service.Show<PlaygroundViewModel>();
-
+        _setup.Service.Show<PlaygroundViewModel, PlaygroundNavigationArgs>(new PlaygroundNavigationArgs(doorController));
     }
+}
 
-    // Update is called once per frame
-    void Update()
+public class PlaygroundNavigationArgs
+{
+    public PlaygroundNavigationArgs()
     {
-        
     }
+
+    public PlaygroundNavigationArgs(DoorController doorController)
+    {
+        DoorController = doorController;
+    }
+
+    public DoorController DoorController { get; set; }
 }
 
 public class Setup : FreeViewSetup
@@ -41,10 +47,6 @@ public class Setup : FreeViewSetup
     }
 
     public Setup() : base()
-    {
-        
-    }
-    public Setup(Configuration configuration) : base(configuration)
     {
     }
 }

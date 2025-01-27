@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,8 +13,12 @@ namespace Sample.Scripts.Controllers
         private Vector3 openPosition;
 
         private Vector3 _initialPosition;
-        private bool _isOpen;
+        private bool _isOpened = true;
         private bool _isProcessing;
+
+        public event Action<object, bool> DoorStateChanged;
+
+        public bool IsOpened => _isOpened;
 
         private void Start()
         {
@@ -30,7 +35,7 @@ namespace Sample.Scripts.Controllers
         {
             var elapsedTime = 0f;
             var startPosition = transform.position;
-            var targetPosition = _isOpen ? _initialPosition : openPosition;
+            var targetPosition = IsOpened ? _initialPosition : openPosition;
 
             _isProcessing = true;
             while (elapsedTime < duration)
@@ -39,7 +44,8 @@ namespace Sample.Scripts.Controllers
                 transform.position = Vector3.Lerp(startPosition, targetPosition, EaseInQuart(elapsedTime / duration));
                 yield return null;
             }
-            _isOpen = !_isOpen;
+            _isOpened = !IsOpened;
+            DoorStateChanged?.Invoke(this, IsOpened);
             _isProcessing = false;
         }
         

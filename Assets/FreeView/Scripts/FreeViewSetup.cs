@@ -8,19 +8,13 @@ using FreeView.Views.Interfaces;
 
 namespace FreeView.Scripts
 {
-    public class Configuration
-    {
-        public string ViewPrefabsPath { get; set; }
-    }
-
     /// <summary>
     /// Entry point class for initialization
     /// </summary>
-    public abstract class FreeViewSetup : IFreeViewSetup
+    public abstract class FreeViewSetup
     {
-        private readonly Configuration _configuration;
-        public CanvasService CanvasService;
-        
+        private readonly CanvasService _canvasService;
+
         private IViewsContainer _viewsContainer;
         private IViewModelProvider _viewModelProvider;
         private IViewModelLocator _viewModelLocator;
@@ -33,65 +27,49 @@ namespace FreeView.Scripts
         protected IViewLoader ViewLoader => _viewLoader ??= InstantiateViewLoader();
         protected IViewPresenter ViewPresenter => _viewPresenter ??= InstantiateViewPresenter();
 
-        public CanvasService Service => CanvasService;
+        public CanvasService Service => _canvasService;
 
         public FreeViewSetup()
         {
             Initialize();
-            CanvasService = new CanvasService(ViewPresenter);
+            _canvasService = new CanvasService(ViewPresenter);
         }
-
-        public FreeViewSetup(Configuration configuration) : base()
-        {
-            _configuration = configuration;
-        }
+        
+        public abstract void OnCreateViewsMap(IViewsContainer viewsContainer);
 
         public void Initialize()
         {
             OnCreateViewsMap(ViewsContainer);
         }
 
-        public virtual IViewPresenter InstantiateViewPresenter()
+        protected virtual IViewPresenter InstantiateViewPresenter()
         {
             return new ViewPresenter.ViewPresenter(ViewLoader, ViewModelLocator, ViewsContainer);
         }
 
-        public virtual IViewModelProvider InstantiateViewModelProvider()
+        protected virtual IViewModelProvider InstantiateViewModelProvider()
         {
             return new ViewModelProvider();
         }
 
-        public virtual IViewModelLocator InstantiateViewModelLocator()
+        protected virtual IViewModelLocator InstantiateViewModelLocator()
         {
             return new ViewModelLocator.ViewModelLocator(ViewModelProvider);
         }
 
-        public virtual IViewsContainer InstantiateViewContainer()
+        protected virtual IViewsContainer InstantiateViewContainer()
         {
             return new ViewsContainer();
         }
 
-        public virtual IViewLoader InstantiateViewLoader()
+        protected virtual IViewLoader InstantiateViewLoader()
         {
             return new ViewLoader(ViewsContainer);
         }
-
-        public abstract void OnCreateViewsMap(IViewsContainer viewsContainer);
-
-        private ICanvasService CreateCanvasService()
+        
+        protected virtual ICanvasService CreateCanvasService()
         {
             return new CanvasService(ViewPresenter);
         }
-    }
-
-    public interface IFreeViewSetup
-    {
-        IViewPresenter InstantiateViewPresenter();
-        IViewModelProvider InstantiateViewModelProvider();
-        IViewModelLocator InstantiateViewModelLocator();
-        IViewsContainer InstantiateViewContainer();
-        IViewLoader InstantiateViewLoader();
-        void OnCreateViewsMap(IViewsContainer viewsContainer);
-        void Initialize();
     }
 }

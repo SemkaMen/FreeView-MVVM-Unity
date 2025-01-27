@@ -64,6 +64,7 @@ namespace FreeView.ViewPresenter
                 parent = viewContainer.transform;
             }
 
+            ((GameObject)null)?.SetActive(false);
             return Object.Instantiate(view, parent, false);
         }
     }
