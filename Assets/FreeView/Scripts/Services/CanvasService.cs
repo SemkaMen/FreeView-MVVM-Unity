@@ -26,10 +26,6 @@ namespace FreeView.Services
         {
             SetVisibility<TViewModel>(false);
         }
-
-        public void Hide(IBaseViewModel viewModel)
-        {
-        }
         
         public void Show<TViewModel>() where TViewModel : IBaseViewModel
         {
@@ -43,13 +39,16 @@ namespace FreeView.Services
             InitView<TViewModel, TNavigationArgs>(navigationArgs);
             SetVisibility<TViewModel, TNavigationArgs>(true, navigationArgs);
         }
-        
+
+        private void SetVisibilty<TViewModel>(bool isVisible) where TViewModel : IBaseViewModel
+        {
+        }
+
         private void SetVisibility<TViewModel>(bool isVisible) where TViewModel : IBaseViewModel
         {
             var view = FindViewByViewModel<TViewModel>();
             if (view == null) return;
 
-            view.ViewModel.Prepare();
             view.SetVisible(isVisible);
         }
 
