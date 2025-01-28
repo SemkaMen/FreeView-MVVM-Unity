@@ -5,6 +5,23 @@ using FreeView.Views.Interfaces;
 
 namespace FreeView.Views
 {
+    public interface IViewsTemplateSelector
+    {
+        Type GetViewType(object forVM);
+    }
+    
+    public abstract class BaseTemplateSelector : IViewsTemplateSelector
+    {
+    
+        public virtual Type GetViewType(object forVM)
+        {
+            return ViewMapping[forVM.GetType()];
+        }
+        
+        protected abstract Dictionary<IBaseViewModel, IBaseView> ViewMapping { get; }
+    }
+
+
     public class ViewsContainer : IViewsContainer
     {
         private readonly Dictionary<Type, Type> _bindingMap = new();
