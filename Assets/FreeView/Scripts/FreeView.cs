@@ -2,18 +2,16 @@ using FreeView.Services;
 using FreeView.Services.Interfaces;
 using FreeView.ViewModelLocator;
 using FreeView.ViewModelLocator.Interfaces;
+using FreeView.ViewModels.Interfaces;
 using FreeView.ViewPresenter.Interfaces;
 using FreeView.Views;
 using FreeView.Views.Interfaces;
 
 namespace FreeView.Scripts
 {
-    /// <summary>
-    /// Entry point class for initialization
-    /// </summary>
-    public abstract class FreeViewSetup
+    public class FreeView
     {
-        private readonly CanvasService _canvasService;
+        private readonly ICanvasService _canvasService;
 
         private IViewsContainer _viewsContainer;
         private IViewModelProvider _viewModelProvider;
@@ -27,19 +25,35 @@ namespace FreeView.Scripts
         protected IViewLoader ViewLoader => _viewLoader ??= InstantiateViewLoader();
         protected IViewPresenter ViewPresenter => _viewPresenter ??= InstantiateViewPresenter();
 
-        public CanvasService Service => _canvasService;
-
-        public FreeViewSetup()
+        public FreeView()
         {
-            Initialize();
-            _canvasService = new CanvasService(ViewPresenter);
+            _canvasService = CreateCanvasService();
         }
         
-        public abstract void OnCreateViewsMap(IViewsContainer viewsContainer);
-
-        public void Initialize()
+        public FreeView(IViewsTemplateSelector viewsTemplateSelector) : this()
         {
-            OnCreateViewsMap(ViewsContainer);
+            CreateViewMappingFromSelector(viewsTemplateSelector);
+        }
+        
+        public void Hide<TViewModel>() where TViewModel : IBaseViewModel
+        {
+            _canvasService.Hide<TViewModel>();
+        }
+        
+        public void Show<TViewModel>() where TViewModel : IBaseViewModel
+        {
+            _canvasService.Show<TViewModel>();
+        }
+
+        public void Show<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
+            where TViewModel : IBaseViewModel<TNavigationArgs>
+        {
+            _canvasService.Show<TViewModel, TNavigationArgs>(navigationArgs);
+        }
+
+        public virtual void RegisterViewsSelector(IViewsTemplateSelector templateSelector)
+        {
+            
         }
 
         protected virtual IViewPresenter InstantiateViewPresenter()
@@ -67,9 +81,20 @@ namespace FreeView.Scripts
             return new ViewLoader(ViewsContainer);
         }
         
-        protected virtual ICanvasService CreateCanvasService()
+        protected virtual ICanvasService InstantiateCanvasService()
         {
-            return new CanvasService(ViewPresenter);
+            return new CanvasService(ViewPresenter, ViewsContainer);
+        }
+        
+        private ICanvasService CreateCanvasService()
+        {
+            return InstantiateCanvasService();
+        }
+
+        private void CreateViewMappingFromSelector(IViewsTemplateSelector viewsTemplateSelector)
+        {
+            foreach (var map in viewsTemplateSelector.ViewMapping) 
+                ViewsContainer.Add(map.Key, map.Value);
         }
     }
 }

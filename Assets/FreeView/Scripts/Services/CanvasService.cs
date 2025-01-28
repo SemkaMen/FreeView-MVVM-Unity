@@ -11,24 +11,20 @@ namespace FreeView.Services
     public class CanvasService : ICanvasService, IDisposable
     {
         private readonly IViewPresenter _viewPresenter;
+        private readonly IViewsContainer _viewsContainer;
+        private readonly List<IBaseView> _childViews;
         private bool _disposed;
-
-        public List<IBaseView> ChildViews { get; } = new();
-
-        public CanvasService(IViewPresenter viewPresenter)
+        
+        public CanvasService(IViewPresenter viewPresenter, IViewsContainer viewsContainer)
         {
             _viewPresenter = viewPresenter;
+            _viewsContainer = viewsContainer;
+            _childViews = new List<IBaseView>();
         }
-        
-        public void Clear() => ChildViews.Clear();
 
         public void Hide<TViewModel>() where TViewModel : IBaseViewModel
         {
             SetVisibility<TViewModel>(false);
-        }
-
-        public void Hide(IBaseViewModel viewModel)
-        {
         }
         
         public void Show<TViewModel>() where TViewModel : IBaseViewModel
@@ -41,40 +37,42 @@ namespace FreeView.Services
             where TViewModel : IBaseViewModel<TNavigationArgs>
         {
             InitView<TViewModel, TNavigationArgs>(navigationArgs);
-            SetVisibility<TViewModel, TNavigationArgs>(true, navigationArgs);
+            SetVisibility<TViewModel>(true);
         }
         
-        private void SetVisibility<TViewModel>(bool isVisible) where TViewModel : IBaseViewModel
+        public void Dispose()
         {
-            var view = FindViewByViewModel<TViewModel>();
-            if (view == null) return;
+            if (_disposed)
+                return;
 
-            view.ViewModel.Prepare();
-            view.SetVisible(isVisible);
-        }
-
-        private void SetVisibility<TViewModel, TNavigationArgs>(bool isVisible, TNavigationArgs navigationArgs)
-            where TViewModel : IBaseViewModel<TNavigationArgs>
-        {
-            var view = FindViewByViewModel<TViewModel>();
-            if (view == null) return;
-
-            if (view.ViewModel is IBaseViewModel<TNavigationArgs> navArgsViewModel)
+            foreach (var view in _childViews.OfType<IDisposable>())
             {
-                navArgsViewModel.Prepare(navigationArgs);
+                view.Dispose();
             }
 
-            view.SetVisible(isVisible);
+            _childViews.Clear();
+            _disposed = true;
+        }
+        
+        private void AddView(IBaseView view)
+        {
+            if (view == null) throw new ArgumentNullException(nameof(view));
+            if (!_childViews.Contains(view)) _childViews.Add(view);
         }
 
+        private void SetVisibility<TViewModel>(bool isVisible) where TViewModel : IBaseViewModel
+        {
+            FindViewByViewModel<TViewModel>()?.SetVisible(isVisible);
+        }
+        
         private IBaseView FindViewByViewModel<TViewModel>()
         {
-            return ChildViews.FirstOrDefault(v => v?.ViewModel?.GetType() == typeof(TViewModel));
+            return _childViews.FirstOrDefault(v => v?.ViewModel?.GetType() == typeof(TViewModel));
         }
 
         private void InitView<TViewModel>() where TViewModel : IBaseViewModel
         {
-            var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
+            var view = _childViews.FirstOrDefault(v => v.ViewModel is TViewModel);
             if (view == null)
             {
                 view = _viewPresenter.PresentView<TViewModel>();
@@ -82,41 +80,15 @@ namespace FreeView.Services
             }
         }
 
-        private void InitView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs, bool isVisible = true)
+        private void InitView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
             where TViewModel : IBaseViewModel<TNavigationArgs>
         {
-            var view = ChildViews.FirstOrDefault(v => v.ViewModel is TViewModel);
+            var view = _childViews.FirstOrDefault(v => v.ViewModel is TViewModel);
             if (view == null)
             {
                 view = _viewPresenter.PresentView<TViewModel, TNavigationArgs>(navigationArgs);
                 AddView(view);
             }
-            if (isVisible) view.SetVisible(true);
-        }
-
-        private void AddView(IBaseView view)
-        {
-            if (view == null) throw new ArgumentNullException(nameof(view));
-            if (!ChildViews.Contains(view)) ChildViews.Add(view);
-        }
-        
-        private void RemoveView<TViewModel>()
-        {
-            var view = FindViewByViewModel<TViewModel>();
-            if (view != null) ChildViews.Remove(view);
-        }
-
-        public void Dispose()
-        {
-            if (_disposed) return;
-
-            foreach (var view in ChildViews.OfType<IDisposable>())
-            {
-                view.Dispose();
-            }
-
-            ChildViews.Clear();
-            _disposed = true;
         }
     }
 }

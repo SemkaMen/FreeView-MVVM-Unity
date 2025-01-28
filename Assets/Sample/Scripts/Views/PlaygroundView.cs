@@ -1,6 +1,7 @@
 using FreeView.Bindings;
 using FreeView.Views;
 using FreeView.Views.Attributes;
+using Sample.Scripts.Components;
 using Sample.Scripts.ViewModels;
 using TMPro;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Sample.Scripts.Views
     {
         private Button _toggleDoorButton;
         private TextMeshProUGUI _doorStateText;
+        private ProgressBarComponent _doorCounterProgressBar;
         
         private bool _isDoorOpened;
 
@@ -31,6 +33,7 @@ namespace Sample.Scripts.Views
 
             _toggleDoorButton = GetElementComponent<Button>("_toggleDoorButton");
             _doorStateText = GetElementComponent<TextMeshProUGUI>("_doorStateText");
+            _doorCounterProgressBar = GetElementComponent<ProgressBarComponent>("_doorCounterProgressBar");
         }
 
         protected override void OnViewStart()
@@ -39,6 +42,8 @@ namespace Sample.Scripts.Views
         
             var set = this.CreateBindingSet<PlaygroundView, PlaygroundViewModel>();
             set.Bind(this).For(v => v.IsDoorOpened).To(vm => vm.IsDoorOpened);
+            set.Bind(_doorCounterProgressBar).For(v => v.CurrentValue).To(vm => vm.DoorOpenCounter);
+            set.Bind(_doorCounterProgressBar).For(v => v.MaxValue).To(vm => vm.TargetDoorOpens);
             set.Apply();
         }
 

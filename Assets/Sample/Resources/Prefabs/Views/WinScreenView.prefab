@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2915596235009402553}
   - component: {fileID: 2915596235009402552}
   m_Layer: 5
-  m_Name: _doorStateText
+  m_Name: _winText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -121.322266}
-  m_SizeDelta: {x: 287.1326, y: 73.1446}
+  m_AnchoredPosition: {x: 0, y: -386.48755}
+  m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2915596235009402553
 CanvasRenderer:
@@ -66,7 +66,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Door is opened
+  m_text: 'You opened the door so many times and win!
+
+    Amazing!
+
+    Press "Restart"
+    button to open door again.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -144,9 +149,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2915596235051705920}
-  - component: {fileID: 2915596235051705921}
+  - component: {fileID: 163830590853143522}
   m_Layer: 5
-  m_Name: PlaygroundView
+  m_Name: WinScreenView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +171,6 @@ RectTransform:
   m_Children:
   - {fileID: 2915596236300159365}
   - {fileID: 2915596235009402555}
-  - {fileID: 8619685112835037403}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,7 +179,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2915596235051705921
+--- !u!114 &163830590853143522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2915596235051705923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 117a0189a41414e229690a17b5071219, type: 3}
+  m_Script: {fileID: 11500000, guid: adc9c6d902df438c86e1a9eae9aec648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2915596236300159364
@@ -200,7 +204,7 @@ GameObject:
   - component: {fileID: 2915596236300159371}
   - component: {fileID: 2915596236300159370}
   m_Layer: 5
-  m_Name: _toggleDoorButton
+  m_Name: _resetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -296.49146}
+  m_AnchoredPosition: {x: 0, y: -149.74146}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2915596236300159368
@@ -375,7 +379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle door
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -444,109 +448,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1001 &8248957829967821225
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2915596235051705920}
-    m_Modifications:
-    - target: {fileID: 424862845524767997, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -250
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424862846101873011, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-      propertyPath: m_Name
-      value: _doorCounterProgressBar
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
---- !u!224 &8619685112835037403 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 424862846101873010, guid: 686c212464d244c65b92d04fb9baa05b, type: 3}
-  m_PrefabInstance: {fileID: 8248957829967821225}
-  m_PrefabAsset: {fileID: 0}
