@@ -5,6 +5,8 @@ namespace Sample.Scripts.ViewModels
 {
     public class PlaygroundViewModel : BaseViewModel<PlaygroundNavigationArgs>
     {
+        private readonly FreeView.Scripts.FreeView _freeView;
+
         private DoorController _doorController;
         private bool _isDoorOpened;
         private int _targetDoorOpens;
@@ -26,6 +28,11 @@ namespace Sample.Scripts.ViewModels
         {
             get => _doorOpenCounter;
             set => SetProperty(ref _doorOpenCounter, value);
+        }
+
+        public PlaygroundViewModel()
+        {
+            _freeView = SceneContext.GetInstance().FreeView;
         }
         
         public override void Prepare(PlaygroundNavigationArgs args)
@@ -66,6 +73,8 @@ namespace Sample.Scripts.ViewModels
 
         private void ShowWinScreen()
         {
+            _freeView.Hide<PlaygroundViewModel>();
+            _freeView.Show<WinScreenViewModel>();
         }
     }
 }

@@ -45,7 +45,7 @@ public class SceneContext : MonoBehaviour
 
     private void Start()
     {
-        FreeView.Show<PlaygroundViewModel>();
+        FreeView.Show<PlaygroundViewModel, PlaygroundNavigationArgs>(new PlaygroundNavigationArgs(doorController));
     }
 
     private void OnApplicationQuit()

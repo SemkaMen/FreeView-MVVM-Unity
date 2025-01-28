@@ -9,5 +9,6 @@ public class SampleViewsViewsTemplateSelector : BaseViewsTemplateSelector
     public override Dictionary<Type, Type> ViewMapping => new()
     {
         { typeof(PlaygroundViewModel), typeof(PlaygroundView) },
+        { typeof(WinScreenViewModel), typeof(WinScreenView) },
     };
 }
