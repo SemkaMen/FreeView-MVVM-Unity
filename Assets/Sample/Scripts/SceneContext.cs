@@ -1,20 +1,10 @@
-using System.Collections.Generic;
+using System;
 using FreeView.ViewModels.Interfaces;
-using FreeView.Views;
 using FreeView.Views.Interfaces;
 using Sample.Scripts.Controllers;
 using Sample.Scripts.ViewModels;
-using Sample.Scripts.Views;
 using UnityEngine;
 
-
-public class Template : BaseTemplateSelector
-{
-    protected override Dictionary<IBaseViewModel, IBaseView> ViewMapping => new()
-    {
-        { typeof(PlaygroundViewModel), typeof(PlaygroundView) },
-    };
-}
 
 public class SceneContext : MonoBehaviour
 {
@@ -50,9 +40,14 @@ public class SceneContext : MonoBehaviour
         else if (_instance != this)
             Destroy(gameObject);
         
-        FreeView = new FreeView.Scripts.FreeView();
+        FreeView = new FreeView.Scripts.FreeView(new SampleViewsViewsTemplateSelector());
     }
-    
+
+    private void Start()
+    {
+        FreeView.Show<PlaygroundViewModel>();
+    }
+
     private void OnApplicationQuit()
     {
         _applicationIsQuitting = true;

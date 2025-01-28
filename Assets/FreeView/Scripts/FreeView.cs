@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FreeView.Services;
 using FreeView.Services.Interfaces;
 using FreeView.ViewModelLocator;
@@ -25,11 +24,15 @@ namespace FreeView.Scripts
         protected IViewModelLocator ViewModelLocator => _viewModelLocator ??= InstantiateViewModelLocator();
         protected IViewLoader ViewLoader => _viewLoader ??= InstantiateViewLoader();
         protected IViewPresenter ViewPresenter => _viewPresenter ??= InstantiateViewPresenter();
-        
+
         public FreeView()
         {
             _canvasService = CreateCanvasService();
-            ViewsContainer.Add<>();
+        }
+        
+        public FreeView(IViewsTemplateSelector viewsTemplateSelector) : this()
+        {
+            CreateViewMappingFromSelector(viewsTemplateSelector);
         }
         
         public void Hide<TViewModel>() where TViewModel : IBaseViewModel
@@ -47,7 +50,12 @@ namespace FreeView.Scripts
         {
             _canvasService.Show<TViewModel, TNavigationArgs>(navigationArgs);
         }
-        
+
+        public virtual void RegisterViewsSelector(IViewsTemplateSelector templateSelector)
+        {
+            
+        }
+
         protected virtual IViewPresenter InstantiateViewPresenter()
         {
             return new ViewPresenter.ViewPresenter(ViewLoader, ViewModelLocator, ViewsContainer);
@@ -81,6 +89,12 @@ namespace FreeView.Scripts
         private ICanvasService CreateCanvasService()
         {
             return InstantiateCanvasService();
+        }
+
+        private void CreateViewMappingFromSelector(IViewsTemplateSelector viewsTemplateSelector)
+        {
+            foreach (var map in viewsTemplateSelector.ViewMapping) 
+                ViewsContainer.Add(map.Key, map.Value);
         }
     }
 }
