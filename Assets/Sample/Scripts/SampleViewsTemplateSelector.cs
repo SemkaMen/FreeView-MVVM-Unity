@@ -4,7 +4,7 @@ using FreeView.Views;
 using Sample.Scripts.ViewModels;
 using Sample.Scripts.Views;
 
-public class SampleViewsViewsTemplateSelector : BaseViewsTemplateSelector
+public class SampleViewsTemplateSelector : BaseViewsTemplateSelector
 {
     public override Dictionary<Type, Type> ViewMapping => new()
     {
