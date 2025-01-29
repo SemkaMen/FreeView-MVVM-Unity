@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Sample.Scripts.Controllers
+namespace FreeView.Sample.Scripts.Controllers
 {
     public class DoorController : MonoBehaviour
     {

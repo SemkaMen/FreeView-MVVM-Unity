@@ -13,5 +13,10 @@
   "author": {
       "name": "Semyon Semyonov",
       "url": "https://github.com/sunnybolter"
-  }
+  },
+  "samples": [{
+            "displayName": "MVVM Tests",
+            "description": "Basic Demo of many different binding types",
+            "path": "Samples~/MVVMTest"
+        }]
 }

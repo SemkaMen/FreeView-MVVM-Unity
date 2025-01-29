@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Sample.Scripts.Views
+namespace FreeView.Sample.Scripts
 {
     public static class CustomColors
     {
