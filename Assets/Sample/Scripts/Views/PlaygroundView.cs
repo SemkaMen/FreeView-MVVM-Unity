@@ -12,6 +12,7 @@ namespace Sample.Scripts.Views
     public class PlaygroundView : BaseView<PlaygroundViewModel>
     {
         private Button _toggleDoorButton;
+        private Image _doorStateImage;
         private TextMeshProUGUI _doorStateText;
         private ProgressBarComponent _doorCounterProgressBar;
         
@@ -23,7 +24,8 @@ namespace Sample.Scripts.Views
             set
             {
                 _isDoorOpened = value;
-                _doorStateText.text = $"Door is " + (value ? "opened" : "closed");
+                _doorStateText.text = "Door is " + (_isDoorOpened ? "opened" : "closed");
+                _doorStateImage.color = _isDoorOpened ? Colors.Green : Colors.Red;
             }
         }
 
@@ -32,6 +34,7 @@ namespace Sample.Scripts.Views
             base.OnViewAwake();
 
             _toggleDoorButton = GetElementComponent<Button>("_toggleDoorButton");
+            _doorStateImage = GetElementComponent<Image>("_doorStateImage");
             _doorStateText = GetElementComponent<TextMeshProUGUI>("_doorStateText");
             _doorCounterProgressBar = GetElementComponent<ProgressBarComponent>("_doorCounterProgressBar");
         }

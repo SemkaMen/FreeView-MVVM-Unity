@@ -1,4 +1,5 @@
 using FreeView.ViewModels;
+using UnityEngine.SceneManagement;
 
 namespace Sample.Scripts.ViewModels
 {
@@ -13,8 +14,7 @@ namespace Sample.Scripts.ViewModels
 
         public void Reset()
         {
-            _freeView.Hide<WinScreenViewModel>();
-            _freeView.Show<PlaygroundViewModel>();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

@@ -1,10 +1,6 @@
-using System;
-using FreeView.ViewModels.Interfaces;
-using FreeView.Views.Interfaces;
 using Sample.Scripts.Controllers;
 using Sample.Scripts.ViewModels;
 using UnityEngine;
-
 
 public class SceneContext : MonoBehaviour
 {
