@@ -32,28 +32,23 @@ namespace FreeView.Scripts
         
         public FreeView(IViewsTemplateSelector viewsTemplateSelector) : this()
         {
-            CreateViewMappingFromSelector(viewsTemplateSelector);
+            MapViewsFromSelector(viewsTemplateSelector);
         }
         
         public void Hide<TViewModel>() where TViewModel : IBaseViewModel
         {
-            _canvasService.Hide<TViewModel>();
+            _canvasService?.Hide<TViewModel>();
         }
         
         public void Show<TViewModel>() where TViewModel : IBaseViewModel
         {
-            _canvasService.Show<TViewModel>();
+            _canvasService?.Show<TViewModel>();
         }
 
         public void Show<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
             where TViewModel : IBaseViewModel<TNavigationArgs>
         {
-            _canvasService.Show<TViewModel, TNavigationArgs>(navigationArgs);
-        }
-
-        public virtual void RegisterViewsSelector(IViewsTemplateSelector templateSelector)
-        {
-            
+            _canvasService?.Show<TViewModel, TNavigationArgs>(navigationArgs);
         }
 
         protected virtual IViewPresenter InstantiateViewPresenter()
@@ -91,7 +86,7 @@ namespace FreeView.Scripts
             return InstantiateCanvasService();
         }
 
-        private void CreateViewMappingFromSelector(IViewsTemplateSelector viewsTemplateSelector)
+        private void MapViewsFromSelector(IViewsTemplateSelector viewsTemplateSelector)
         {
             foreach (var map in viewsTemplateSelector.ViewMapping) 
                 ViewsContainer.Add(map.Key, map.Value);

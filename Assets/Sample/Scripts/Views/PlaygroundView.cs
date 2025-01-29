@@ -24,8 +24,7 @@ namespace Sample.Scripts.Views
             set
             {
                 _isDoorOpened = value;
-                _doorStateText.text = "Door is " + (_isDoorOpened ? "opened" : "closed");
-                _doorStateImage.color = _isDoorOpened ? Colors.Green : Colors.Red;
+                UpdateState();
             }
         }
 
@@ -65,6 +64,12 @@ namespace Sample.Scripts.Views
         private void OnToggleDoorClicked()
         {
             ViewModel.ToggleDoor();
+        }
+
+        private void UpdateState()
+        {
+            _doorStateText.text = "Door is " + (IsDoorOpened ? "opened" : "closed");
+            _doorStateImage.color = IsDoorOpened ? CustomColors.Green : CustomColors.Red;
         }
     }
 }

@@ -36,7 +36,7 @@ public class SceneContext : MonoBehaviour
         else if (_instance != this)
             Destroy(gameObject);
         
-        FreeView = new FreeView.Scripts.FreeView(new SampleViewsViewsTemplateSelector());
+        FreeView = new FreeView.Scripts.FreeView(new SampleViewsTemplateSelector());
     }
 
     private void Start()
