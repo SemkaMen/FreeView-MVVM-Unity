@@ -1,0 +1,17 @@
+{
+  "name": "com.sunnybolter.freeviewmvvm",
+  "version": "1.0.0",
+  "displayName": "FreeView",
+  "description": "A lightweight UI management system for Unity based on the MVVM approach.",
+  "unity": "2021.3",
+  "dependencies": {},
+  "keywords": ["ui", "management", "canvas", "mvvm"],
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/sunnybolter/FreeView-MVVM-Unity"
+    },
+  "author": {
+      "name": "Semyon Semyonov",
+      "url": "https://github.com/sunnybolter"
+  }
+}
