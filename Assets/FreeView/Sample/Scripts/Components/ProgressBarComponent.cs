@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sample.Scripts.Components
+namespace FreeView.Sample.Scripts.Components
 {
     public class ProgressBarComponent : BaseViewComponent
     {

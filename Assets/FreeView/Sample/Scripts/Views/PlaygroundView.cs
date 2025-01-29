@@ -1,12 +1,12 @@
 using FreeView.Bindings;
+using FreeView.Sample.Scripts.Components;
+using FreeView.Sample.Scripts.ViewModels;
 using FreeView.Views;
 using FreeView.Views.Attributes;
-using Sample.Scripts.Components;
-using Sample.Scripts.ViewModels;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Sample.Scripts.Views
+namespace FreeView.Sample.Scripts.Views
 {
     [ViewPresentation(CanvasContainerName = "MainCanvas")]
     public class PlaygroundView : BaseView<PlaygroundViewModel>

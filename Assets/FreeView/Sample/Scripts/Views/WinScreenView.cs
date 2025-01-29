@@ -1,9 +1,9 @@
+using FreeView.Sample.Scripts.ViewModels;
 using FreeView.Views;
 using FreeView.Views.Attributes;
-using Sample.Scripts.ViewModels;
 using UnityEngine.UI;
 
-namespace Sample.Scripts.Views
+namespace FreeView.Sample.Scripts.Views
 {
     [ViewPresentation(CanvasContainerName = "MainCanvas")]
     public class WinScreenView : BaseView<WinScreenViewModel>

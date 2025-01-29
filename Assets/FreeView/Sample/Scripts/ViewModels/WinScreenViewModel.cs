@@ -3,7 +3,7 @@ using FreeView.ViewModels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Sample.Scripts.ViewModels
+namespace FreeView.Sample.Scripts.ViewModels
 {
     public class WinScreenViewModel : BaseViewModel
     {

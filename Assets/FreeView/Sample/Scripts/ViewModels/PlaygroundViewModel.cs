@@ -1,7 +1,7 @@
+using FreeView.Sample.Scripts.Controllers;
 using FreeView.ViewModels;
-using Sample.Scripts.Controllers;
 
-namespace Sample.Scripts.ViewModels
+namespace FreeView.Sample.Scripts.ViewModels
 {
     public class PlaygroundViewModel : BaseViewModel<PlaygroundNavigationArgs>
     {
