@@ -1,5 +1,4 @@
 using Sample.Scripts.Views;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +8,7 @@ namespace FreeView.Sample.Scripts.Components
     {
         private int _currentValue;
 
-        [SerializeField] private TextMeshProUGUI currentValueText;
-
+        [SerializeField] private Text currentValueText;
         [SerializeField] private Slider slider;
 
         public int CurrentValue
