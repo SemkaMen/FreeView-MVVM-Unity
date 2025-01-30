@@ -3,7 +3,6 @@ using FreeView.Sample.Scripts.Components;
 using FreeView.Sample.Scripts.ViewModels;
 using FreeView.Views;
 using FreeView.Views.Attributes;
-using TMPro;
 using UnityEngine.UI;
 
 namespace FreeView.Sample.Scripts.Views
@@ -13,7 +12,7 @@ namespace FreeView.Sample.Scripts.Views
     {
         private Button _toggleDoorButton;
         private Image _doorStateImage;
-        private TextMeshProUGUI _doorStateText;
+        private Text _doorStateText;
         private ProgressBarComponent _doorCounterProgressBar;
         
         private bool _isDoorOpened;
@@ -34,7 +33,7 @@ namespace FreeView.Sample.Scripts.Views
 
             _toggleDoorButton = GetElementComponent<Button>("_toggleDoorButton");
             _doorStateImage = GetElementComponent<Image>("_doorStateImage");
-            _doorStateText = GetElementComponent<TextMeshProUGUI>("_doorStateText");
+            _doorStateText = GetElementComponent<Text>("_doorStateText");
             _doorCounterProgressBar = GetElementComponent<ProgressBarComponent>("_doorCounterProgressBar");
         }
 
