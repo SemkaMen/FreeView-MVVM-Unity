@@ -5,7 +5,7 @@ namespace FreeView.Sample.Scripts.ViewModels
 {
     public class PlaygroundViewModel : BaseViewModel<PlaygroundNavigationArgs>
     {
-        private readonly FreeView.Scripts.FreeView _freeView;
+        private readonly FreeView _freeView;
 
         private DoorController _doorController;
         private bool _isDoorOpened;

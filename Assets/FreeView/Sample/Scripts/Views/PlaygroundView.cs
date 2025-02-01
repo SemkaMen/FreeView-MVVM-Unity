@@ -23,7 +23,7 @@ namespace FreeView.Sample.Scripts.Views
             set
             {
                 _isDoorOpened = value;
-                UpdateState();
+                UpdateDoorState();
             }
         }
 
@@ -65,7 +65,7 @@ namespace FreeView.Sample.Scripts.Views
             ViewModel.ToggleDoor();
         }
 
-        private void UpdateState()
+        private void UpdateDoorState()
         {
             _doorStateText.text = "Door is " + (IsDoorOpened ? "opened" : "closed");
             _doorStateImage.color = IsDoorOpened ? CustomColors.Green : CustomColors.Red;

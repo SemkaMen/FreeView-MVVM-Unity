@@ -1,8 +1,7 @@
 using System;
-using FreeView.ViewModelLocator.Interfaces;
 using FreeView.ViewModels.Interfaces;
 
-namespace FreeView.ViewModelLocator
+namespace FreeView.ViewModels
 {
     public class ViewModelLocator : IViewModelLocator
     {

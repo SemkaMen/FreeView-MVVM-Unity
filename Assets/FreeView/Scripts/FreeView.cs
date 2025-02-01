@@ -1,13 +1,11 @@
 using FreeView.Services;
 using FreeView.Services.Interfaces;
-using FreeView.ViewModelLocator;
-using FreeView.ViewModelLocator.Interfaces;
+using FreeView.ViewModels;
 using FreeView.ViewModels.Interfaces;
-using FreeView.ViewPresenter.Interfaces;
 using FreeView.Views;
 using FreeView.Views.Interfaces;
 
-namespace FreeView.Scripts
+namespace FreeView
 {
     public class FreeView
     {
@@ -53,7 +51,7 @@ namespace FreeView.Scripts
 
         protected virtual IViewPresenter InstantiateViewPresenter()
         {
-            return new ViewPresenter.ViewPresenter(ViewLoader, ViewModelLocator, ViewsContainer);
+            return new ViewPresenter(ViewLoader, ViewModelLocator, ViewsContainer);
         }
 
         protected virtual IViewModelProvider InstantiateViewModelProvider()
@@ -63,7 +61,7 @@ namespace FreeView.Scripts
 
         protected virtual IViewModelLocator InstantiateViewModelLocator()
         {
-            return new ViewModelLocator.ViewModelLocator(ViewModelProvider);
+            return new ViewModelLocator(ViewModelProvider);
         }
 
         protected virtual IViewsContainer InstantiateViewContainer()
@@ -78,7 +76,7 @@ namespace FreeView.Scripts
         
         protected virtual ICanvasService InstantiateCanvasService()
         {
-            return new CanvasService(ViewPresenter, ViewsContainer);
+            return new CanvasService(ViewPresenter);
         }
         
         private ICanvasService CreateCanvasService()

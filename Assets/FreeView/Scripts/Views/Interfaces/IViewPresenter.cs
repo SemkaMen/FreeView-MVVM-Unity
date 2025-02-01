@@ -1,7 +1,6 @@
 using FreeView.ViewModels.Interfaces;
-using FreeView.Views;
 
-namespace FreeView.ViewPresenter.Interfaces
+namespace FreeView.Views
 {
     public interface IViewPresenter
     {

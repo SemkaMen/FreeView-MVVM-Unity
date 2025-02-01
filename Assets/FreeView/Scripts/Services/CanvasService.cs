@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FreeView.Services.Interfaces;
 using FreeView.ViewModels.Interfaces;
-using FreeView.ViewPresenter.Interfaces;
+using FreeView.Views;
 using FreeView.Views.Interfaces;
 
 namespace FreeView.Services
@@ -11,14 +11,12 @@ namespace FreeView.Services
     public class CanvasService : ICanvasService, IDisposable
     {
         private readonly IViewPresenter _viewPresenter;
-        private readonly IViewsContainer _viewsContainer;
         private readonly List<IBaseView> _childViews;
         private bool _disposed;
         
-        public CanvasService(IViewPresenter viewPresenter, IViewsContainer viewsContainer)
+        public CanvasService(IViewPresenter viewPresenter)
         {
             _viewPresenter = viewPresenter;
-            _viewsContainer = viewsContainer;
             _childViews = new List<IBaseView>();
         }
 

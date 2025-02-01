@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using FreeView.ViewModelLocator.Interfaces;
 using FreeView.ViewModels.Interfaces;
 
-namespace FreeView.ViewModelLocator
+namespace FreeView.ViewModels
 {
     public class ViewModelProvider : IViewModelProvider
     {

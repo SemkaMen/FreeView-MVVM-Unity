@@ -2,15 +2,12 @@ using System;
 using System.Linq;
 using System.Reflection;
 using FreeView.Views.Interfaces;
-using FreeView.ViewModelLocator.Interfaces;
 using FreeView.ViewModels.Interfaces;
-using FreeView.ViewPresenter.Interfaces;
-using FreeView.Views;
 using FreeView.Views.Attributes;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FreeView.ViewPresenter
+namespace FreeView.Views
 {
     public class ViewPresenter : IViewPresenter
     {
