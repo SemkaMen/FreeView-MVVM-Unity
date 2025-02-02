@@ -1,9 +1,10 @@
 using System.ComponentModel;
 using FreeView.Bindings;
 using FreeView.Bindings.Interfaces;
+using FreeView.Views.Interfaces;
 using UnityEngine;
 
-namespace Sample.Scripts.Views
+namespace Sample.Views
 {
     public abstract class BaseViewComponent : MonoBehaviour, IBaseViewComponent
     {

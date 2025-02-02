@@ -1,4 +1,4 @@
-using Sample.Scripts.Views;
+using Sample.Views;
 using UnityEngine;
 using UnityEngine.UI;
 
