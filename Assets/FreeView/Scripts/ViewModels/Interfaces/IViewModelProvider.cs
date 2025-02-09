@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeView.ViewModels.Interfaces
+namespace FreeView.Scripts.ViewModels.Interfaces
 {
     public interface IViewModelProvider
     {

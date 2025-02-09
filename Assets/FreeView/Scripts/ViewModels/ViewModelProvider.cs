@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
 
-namespace FreeView.ViewModels
+namespace FreeView.Scripts.ViewModels
 {
     public class ViewModelProvider : IViewModelProvider
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeView.Bindings.Interfaces
+namespace FreeView.Scripts.Bindings.Interfaces
 {
     public interface IBindingDescription : IDisposable
     {

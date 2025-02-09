@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeView.Views.Attributes
+namespace FreeView.Scripts.Views.Attributes
 {
     public class ViewPresentationAttribute : Attribute
     {

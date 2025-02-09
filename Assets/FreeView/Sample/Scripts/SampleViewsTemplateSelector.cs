@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using FreeView.Sample.Scripts.ViewModels;
 using FreeView.Sample.Scripts.Views;
-using FreeView.Views;
+using FreeView.Scripts.Views;
 
 namespace FreeView.Sample.Scripts
 {

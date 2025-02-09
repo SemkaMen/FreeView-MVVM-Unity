@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using FreeView.ViewModels.Interfaces;
-using FreeView.Views.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Scripts.Views.Interfaces;
 
-namespace FreeView.Views
+namespace FreeView.Scripts.Views
 {
     public class ViewsContainer : IViewsContainer
     {

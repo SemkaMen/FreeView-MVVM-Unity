@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using FreeView.Bindings;
-using FreeView.Bindings.Interfaces;
-using FreeView.Views.Interfaces;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.Bindings;
+using FreeView.Scripts.Bindings.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
+using FreeView.Scripts.Views.Interfaces;
 using UnityEngine;
 
-namespace FreeView.Views
+namespace FreeView.Scripts.Views
 {
     public abstract class BaseView<TViewModel> : BaseView where TViewModel : IBaseViewModel
     {

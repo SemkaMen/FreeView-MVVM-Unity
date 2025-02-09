@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeView.Views.Interfaces
+namespace FreeView.Scripts.Views.Interfaces
 {
     public interface IViewLoader
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using FreeView.Bindings.Interfaces;
+using FreeView.Scripts.Bindings.Interfaces;
 
-namespace FreeView.Bindings
+namespace FreeView.Scripts.Bindings
 {
     public class BindingContextSet<TTarget, TSource> : IDisposable where TTarget : class, IBindingContextOwner
     {

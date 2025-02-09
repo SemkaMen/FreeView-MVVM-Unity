@@ -1,7 +1,7 @@
 using System;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
 
-namespace FreeView.Views.Interfaces
+namespace FreeView.Scripts.Views.Interfaces
 {
     public interface IViewsContainer
     {

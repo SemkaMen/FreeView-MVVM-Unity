@@ -1,5 +1,5 @@
 using System;
-using FreeView.ViewModels;
+using FreeView.Scripts.ViewModels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -1,7 +1,7 @@
-using FreeView.Bindings.Interfaces;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.Bindings.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
 
-namespace FreeView.Views.Interfaces
+namespace FreeView.Scripts.Views.Interfaces
 {
     public interface IBaseView : IBindable
     {

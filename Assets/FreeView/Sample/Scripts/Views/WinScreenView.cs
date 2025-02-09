@@ -1,6 +1,6 @@
 using FreeView.Sample.Scripts.ViewModels;
-using FreeView.Views;
-using FreeView.Views.Attributes;
+using FreeView.Scripts.Views;
+using FreeView.Scripts.Views.Attributes;
 using UnityEngine.UI;
 
 namespace FreeView.Sample.Scripts.Views

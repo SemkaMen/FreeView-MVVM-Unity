@@ -1,10 +1,10 @@
 using System;
 using System.Linq.Expressions;
-using FreeView.Bindings.Interfaces;
-using FreeView.ViewModels;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.Bindings.Interfaces;
+using FreeView.Scripts.ViewModels;
+using FreeView.Scripts.ViewModels.Interfaces;
 
-namespace FreeView.Bindings
+namespace FreeView.Scripts.Bindings
 {
     public class BindingDescription<TTarget, TSource> : IBindingDescription where TTarget : class
     {

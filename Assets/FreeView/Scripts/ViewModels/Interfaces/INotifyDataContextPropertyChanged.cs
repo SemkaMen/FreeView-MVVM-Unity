@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace FreeView.ViewModels.Interfaces
+namespace FreeView.Scripts.ViewModels.Interfaces
 {
     public delegate void DataContextPropertyChangedEventHandler(object sender, DataContextPropertyChangedEventArgs e);
 

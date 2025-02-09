@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FreeView.Views
+namespace FreeView.Scripts.Views.Interfaces
 {
     public interface IViewsTemplateSelector
     {

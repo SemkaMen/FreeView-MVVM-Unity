@@ -11,7 +11,7 @@ namespace FreeView.Sample.Scripts
         private static SceneContext _instance;
         private static bool _applicationIsQuitting;
     
-        public FreeView FreeView { get; private set; }
+        public FreeView.Scripts.FreeView FreeView { get; private set; }
 
         public static SceneContext GetInstance()
         {
@@ -38,7 +38,7 @@ namespace FreeView.Sample.Scripts
             else if (_instance != this)
                 Destroy(gameObject);
         
-            FreeView = new FreeView(new SampleViewsTemplateSelector());
+            FreeView = new FreeView.Scripts.FreeView(new SampleViewsTemplateSelector());
         }
 
         private void Start()

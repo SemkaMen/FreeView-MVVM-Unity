@@ -1,10 +1,10 @@
 using System;
 using System.Reflection;
-using FreeView.Views.Interfaces;
-using FreeView.Views.Attributes;
+using FreeView.Scripts.Views.Attributes;
+using FreeView.Scripts.Views.Interfaces;
 using UnityEngine;
 
-namespace FreeView.Views
+namespace FreeView.Scripts.Views
 {
     public class ViewLoader : IViewLoader
     {

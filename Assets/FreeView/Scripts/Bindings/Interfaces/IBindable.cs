@@ -1,4 +1,4 @@
-namespace FreeView.Bindings.Interfaces
+namespace FreeView.Scripts.Bindings.Interfaces
 {
     public interface IBindable : IBindingContextOwner
     {

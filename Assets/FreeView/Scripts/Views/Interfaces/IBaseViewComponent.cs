@@ -1,7 +1,7 @@
 using System.ComponentModel;
-using FreeView.Bindings.Interfaces;
+using FreeView.Scripts.Bindings.Interfaces;
 
-namespace FreeView.Views.Interfaces
+namespace FreeView.Scripts.Views.Interfaces
 {
     public interface IBaseViewComponent : INotifyPropertyChanged, IBindable
     {

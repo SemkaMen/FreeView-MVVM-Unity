@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using FreeView.ViewModels.Interfaces;
+using FreeView.Scripts.ViewModels.Interfaces;
 
-namespace FreeView.ViewModels
+namespace FreeView.Scripts.ViewModels
 {
     public abstract class BaseViewModel<TNavigationArgs> : BaseViewModel, IBaseViewModel<TNavigationArgs>
     {

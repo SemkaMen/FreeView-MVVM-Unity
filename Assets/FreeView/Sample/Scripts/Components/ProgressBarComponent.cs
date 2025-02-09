@@ -1,4 +1,4 @@
-using Sample.Views;
+using FreeView.Scripts.Views;
 using UnityEngine;
 using UnityEngine.UI;
 
