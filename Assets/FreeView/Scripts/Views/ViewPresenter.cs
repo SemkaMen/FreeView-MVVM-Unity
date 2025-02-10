@@ -44,27 +44,6 @@ namespace FreeView.Scripts.Views
             SetVisibility<TViewModel>(true);
         }
 
-        public bool CanPresent<TViewModel>()
-            where TViewModel : IBaseViewModel
-        {
-            return _viewsContainer.GetViewType(typeof(TViewModel)) != null;
-        }
-
-        public BaseView PresentView<TViewModel>() where TViewModel : IBaseViewModel
-        {
-            var view = GetView<TViewModel>();
-            view.ViewModel ??= _viewModelLocator.Load<TViewModel>();
-            return view;
-        }
-
-        public BaseView PresentView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
-            where TViewModel : IBaseViewModel<TNavigationArgs>
-        {
-            var view = GetView<TViewModel>();
-            view.ViewModel ??= _viewModelLocator.Load<TViewModel, TNavigationArgs>(navigationArgs);
-            return view;
-        }
-
         public virtual void Dispose()
         {
             if (_disposed)
@@ -75,6 +54,26 @@ namespace FreeView.Scripts.Views
 
             _childViews.Clear();
             _disposed = true;
+        }
+
+        private bool CanPresent<TViewModel>() where TViewModel : IBaseViewModel
+        {
+            return _viewsContainer.GetViewType(typeof(TViewModel)) != null;
+        }
+
+        private BaseView PresentView<TViewModel>() where TViewModel : IBaseViewModel
+        {
+            var view = GetView<TViewModel>();
+            view.ViewModel ??= _viewModelLocator.Load<TViewModel>();
+            return view;
+        }
+
+        private BaseView PresentView<TViewModel, TNavigationArgs>(TNavigationArgs navigationArgs)
+            where TViewModel : IBaseViewModel<TNavigationArgs>
+        {
+            var view = GetView<TViewModel>();
+            view.ViewModel ??= _viewModelLocator.Load<TViewModel, TNavigationArgs>(navigationArgs);
+            return view;
         }
 
         private BaseView GetView<TViewModel>() where TViewModel : IBaseViewModel
