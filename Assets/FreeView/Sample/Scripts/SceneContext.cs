@@ -1,5 +1,6 @@
 using FreeView.Sample.Scripts.Controllers;
 using FreeView.Sample.Scripts.ViewModels;
+using FreeView.Scripts;
 using UnityEngine;
 
 namespace FreeView.Sample.Scripts
@@ -11,7 +12,7 @@ namespace FreeView.Sample.Scripts
         private static SceneContext _instance;
         private static bool _applicationIsQuitting;
     
-        public FreeView.Scripts.FreeView FreeView { get; private set; }
+        public FreeViewProvider FreeViewProvider { get; private set; }
 
         public static SceneContext GetInstance()
         {
@@ -38,12 +39,12 @@ namespace FreeView.Sample.Scripts
             else if (_instance != this)
                 Destroy(gameObject);
         
-            FreeView = new FreeView.Scripts.FreeView(new SampleViewsTemplateSelector());
+            FreeViewProvider = new FreeViewProvider(new SampleViewsTemplateSelector());
         }
 
         private void Start()
         {
-            FreeView.Show<PlaygroundViewModel, PlaygroundNavigationArgs>(new PlaygroundNavigationArgs(doorController));
+            FreeViewProvider.Show<PlaygroundViewModel, PlaygroundNavigationArgs>(new PlaygroundNavigationArgs(doorController));
         }
 
         private void OnApplicationQuit()

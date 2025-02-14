@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using FreeView.Scripts.ViewModels;
 using FreeView.Scripts.ViewModels.Interfaces;
 using FreeView.Scripts.Views;
@@ -5,7 +7,7 @@ using FreeView.Scripts.Views.Interfaces;
 
 namespace FreeView.Scripts
 {
-    public class FreeView
+    public class FreeViewProvider
     {
         private IViewsContainer _viewsContainer;
         private IViewModelProvider _viewModelProvider;
@@ -19,9 +21,14 @@ namespace FreeView.Scripts
         protected IViewLoader ViewLoader => _viewLoader ??= InstantiateViewLoader();
         protected IViewPresenter ViewPresenter => _viewPresenter ??= InstantiateViewPresenter();
         
-        public FreeView(IViewsTemplateSelector viewsTemplateSelector)
+        public FreeViewProvider(Dictionary<Type, Type> viewsMapping)
         {
-            MapViewsFromSelector(viewsTemplateSelector);
+            MapViewsFromSelector(viewsMapping);
+        }
+        
+        public FreeViewProvider(IViewsTemplateSelector viewsTemplateSelector)
+        {
+            MapViewsFromSelector(viewsTemplateSelector?.ViewMapping);
         }
 
         public void Hide<TViewModel>() where TViewModel : IBaseViewModel
@@ -65,9 +72,9 @@ namespace FreeView.Scripts
             return new ViewLoader(ViewsContainer);
         }
         
-        private void MapViewsFromSelector(IViewsTemplateSelector viewsTemplateSelector)
+        private void MapViewsFromSelector(Dictionary<Type, Type> viewMapping)
         {
-            foreach (var map in viewsTemplateSelector.ViewMapping)
+            foreach (var map in viewMapping)
                 ViewsContainer.Add(map.Key, map.Value);
         }
     }

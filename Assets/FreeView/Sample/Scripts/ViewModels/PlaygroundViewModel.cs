@@ -1,11 +1,12 @@
 using FreeView.Sample.Scripts.Controllers;
+using FreeView.Scripts;
 using FreeView.Scripts.ViewModels;
 
 namespace FreeView.Sample.Scripts.ViewModels
 {
     public class PlaygroundViewModel : BaseViewModel<PlaygroundNavigationArgs>
     {
-        private readonly FreeView.Scripts.FreeView _freeView;
+        private readonly FreeViewProvider _freeViewProvider;
 
         private DoorController _doorController;
         private bool _isDoorOpened;
@@ -32,7 +33,7 @@ namespace FreeView.Sample.Scripts.ViewModels
 
         public PlaygroundViewModel()
         {
-            _freeView = SceneContext.GetInstance().FreeView;
+            _freeViewProvider = SceneContext.GetInstance().FreeViewProvider;
         }
         
         public override void Prepare(PlaygroundNavigationArgs args)
@@ -73,8 +74,8 @@ namespace FreeView.Sample.Scripts.ViewModels
 
         private void ShowWinScreen()
         {
-            _freeView.Hide<PlaygroundViewModel>();
-            _freeView.Show<WinScreenViewModel>();
+            _freeViewProvider.Hide<PlaygroundViewModel>();
+            _freeViewProvider.Show<WinScreenViewModel>();
         }
     }
 }
