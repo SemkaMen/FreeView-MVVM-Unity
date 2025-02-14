@@ -139,10 +139,10 @@ Use BaseViewComponent class to create custom controls
     }
     ```
 
-Contributing
+## Contributing
 
 Feel free to contribute by submitting issues and pull requests.
 
-License
+## License
 
 This project is licensed under the MIT License.
